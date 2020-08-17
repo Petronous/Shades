@@ -1,0 +1,76 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://Anim-walk/Character_idle.png" type="Texture" id=2]
+[ext_resource path="res://Anim-walk/Character_walk_0.png" type="Texture" id=3]
+[ext_resource path="res://Anim-walk/Character_walk_1.png" type="Texture" id=4]
+[ext_resource path="res://Anim-walk/Character_jump.png" type="Texture" id=5]
+[ext_resource path="res://Anim-walk/Character_glasses_l.png" type="Texture" id=6]
+[ext_resource path="res://Anim-walk/Character_glasses_r.png" type="Texture" id=7]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.58
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 55, 10 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "walk",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "jump",
+"speed": 0.0
+} ]
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "left",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "right",
+"speed": 0.0
+} ]
+
+[node name="RigidBody2D" type="RigidBody2D"]
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 10.94
+contacts_reported = 16
+contact_monitor = true
+linear_velocity = Vector2( 1, 0 )
+linear_damp = 0.3
+script = ExtResource( 1 )
+acc = 2000
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 1, 9 )
+polygon = PoolVector2Array( -17, 21, -25, 19, -27, 11, -25, -35, 23, -35, 25, 11, 23, 19, 15, 21 )
+
+[node name="CBulletS" type="CollisionShape2D" parent="."]
+position = Vector2( -5.96046e-008, -5 )
+scale = Vector2( 0.4, 0.4 )
+shape = SubResource( 2 )
+
+[node name="AnimS" type="AnimatedSprite" parent="."]
+scale = Vector2( 2, 2 )
+frames = SubResource( 3 )
+animation = "idle"
+
+[node name="Glasses" type="AnimatedSprite" parent="."]
+scale = Vector2( 2, 2 )
+frames = SubResource( 4 )
+animation = "right"
