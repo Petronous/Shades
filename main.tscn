@@ -96,7 +96,7 @@ shape = SubResource( 2 )
 
 [node name="Player4" parent="Node2D" instance=ExtResource( 4 )]
 editor/display_folded = true
-position = Vector2( 337.194, 124.427 )
+position = Vector2( 647.706, 76.1921 )
 physics_material_override = SubResource( 1 )
 gravity_scale = 1.0
 jumpforce = 650

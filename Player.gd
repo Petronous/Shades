@@ -69,12 +69,14 @@ func _process(delta):
 	elif spd == -1: $Glasses.play("left")
 	
 	if on_ground:
+		self.friction = 0.55
 		if spd == 0: $AnimS.play("idle")		
 		else: 
 			if $AnimS.animation != "walk":
 				$AnimS.play("walk")
 				$AnimS.set_frame(randi()%2)
 	else:
+		self.friction = 0.01
 		$AnimS.play("jump")
 		
 		
